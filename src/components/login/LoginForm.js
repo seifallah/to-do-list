@@ -19,14 +19,12 @@ const LoginForm = () => {
             history.push('/todos')
         }
        else {
-        setError("error...");
+            setError("error...");
       }
     }
   
     return (
       <div className="loginForm--container">
-          <h1>{process.env.REACT_APP_USER_EMAIL}</h1>
-          <h1>{process.env.REACT_APP_USER_PASSWORD}</h1>
         <form onSubmit={handleSubmit}>
             <div class="form-group">
                 <label>Email</label>
