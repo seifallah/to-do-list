@@ -3,11 +3,14 @@ import TodoForm from "../components/todo/TodoForm";
 import TodoList from "../components/todo/TodoList";
 
 const TodoPage = () => {
-
-    const [todos, setTodos] = useState([]);
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    const initialTodos = storedTodos!==null?storedTodos:[];
+    const [todos, setTodos] = useState(initialTodos);
 
     const addTodo = (todo) => {
-        setTodos([...todos, todo]);
+        const items = [...todos, todo]; 
+        setTodos(items);
+        localStorage.setItem('todos', JSON.stringify(items) );
     }
 
     return ( <div>
