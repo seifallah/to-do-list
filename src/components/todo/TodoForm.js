@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
+
+const emptyTodo = {id:"", name:"",description:"", status:""};
 
 const TodoForm = (props) => {
-    const [ task, setTask ] = useState({name:"",description:"", status:""});
-    
+  
+    const [ task, setTask ] = useState(emptyTodo);
+    const [buttonLabel, setButtonLabel] = useState('Add');
+
+    useEffect(() => {
+      if(Object.keys(props.todo).length>0) {
+          setTask(props.todo);
+          setButtonLabel("Edit")
+        }
+    }, [props.todo])
+
     const handleChange =(e) => {
       setTask({...task, [e.target.name]:e.target.value});
     }
       
     const handleSubmit =(e) => {
       if(Object.keys(task).length>0) {
-        props.handleSubmit(task);
-        setTask({name:"",description:"", status:""});
+        props.handleSubmit(task, buttonLabel);
+        setTask(emptyTodo);
+        setButtonLabel("Add")
       }
       e.preventDefault();
     }
     const {name, description, status} = task;
+
     return (
       <form onSubmit={handleSubmit}>
         <input type="text" 
@@ -36,7 +49,7 @@ const TodoForm = (props) => {
           value={status} />
 
 
-        <button type="submit">Add</button>
+        <button type="submit">{buttonLabel}</button>
       </form>
     )
 }
