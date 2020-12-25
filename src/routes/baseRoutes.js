@@ -6,15 +6,20 @@ const routes = [
     {
       path: "/",
       exact:true,
-      component: LoginPage
+      component: LoginPage,
+      protected:false
+
     },
     {
       path: "/todos",
       component: TodoPage,
+      protected:true
     },
     {
         path: "*",
         component: NotFound,
+        protected:false
+
       }
   ];
 

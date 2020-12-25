@@ -7,7 +7,6 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-  
     const validateForm =() => {
       return email.length > 0 && password.length > 0;
     }
@@ -16,6 +15,7 @@ const LoginForm = () => {
       e.preventDefault();
       if(email=== process.env.REACT_APP_USER_EMAIL && password === process.env.REACT_APP_USER_PASSWORD) 
         {
+            localStorage.setItem('loggedUser', "loggedIn")
             history.push('/todos')
         }
        else {
