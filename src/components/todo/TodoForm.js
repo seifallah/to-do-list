@@ -1,4 +1,9 @@
 import { useState, useEffect} from "react";
+import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
 
 const emptyTodo = {id:"", name:"",description:"", status:""};
 
@@ -29,27 +34,40 @@ const TodoForm = (props) => {
     const {name, description, status} = task;
 
     return (
-      <form onSubmit={handleSubmit}>
-        <input type="text" 
-          placeholder="task name" 
-          onChange={handleChange} 
-          name="name"
-          value={name} />
+      <form>
+            <div class="form-group">
+                <TextField 
+                    type="text" 
+                    placeholder="task name" 
+                    onChange={handleChange} 
+                    name="name"
+                    value={name}
+                    variant="outlined" 
+                    fullWidth
+                />
+            </div>
 
-        <input type="text" 
-          placeholder="task description" 
-          onChange={handleChange} 
-          name="description"
-          value={description} />
+            <div class="form-group">
+                <TextField 
+                    placeholder="task description" 
+                    onChange={handleChange} 
+                    name="description"
+                    value={description}
+                    variant="outlined" 
+                    fullWidth
+                />
+            </div>
 
-        <input type="text" 
-          placeholder="task status" 
-          onChange={handleChange} 
-          name="status"
-          value={status} />
-
-
-        <button type="submit">{buttonLabel}</button>
+            <div className="form-group">
+                <RadioGroup aria-label="gender" name="status" value={status} onChange={handleChange}>
+                    <FormControlLabel value="1" control={<Radio />} label="completed" />
+                    <FormControlLabel value="0" control={<Radio />} label="not completed" />
+                </RadioGroup>
+            </div>
+        <Button onClick={handleSubmit}
+                variant="contained" 
+                color="primary">{buttonLabel}
+      </Button>
       </form>
     )
 }

@@ -2,6 +2,7 @@ import './App.css';
 import NavBar from './components/nav/Nav';
 import {  Switch,  Route, Redirect} from "react-router-dom";
 import routes from './routes/baseRoutes';
+import Container from '@material-ui/core/Container';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <NavBar/>
       </header>
       <section>
+      <Container fixed>
         <Switch>
           {routes.map((route, index) => (
             route.protected===true
@@ -31,13 +33,14 @@ function App() {
               </Route>
           ))}
         </Switch>
+</Container>
+
       </section>
 
     </div>
   );
 }
 const PrivateRoute =({ children, ...rest })  => {
-console.log(" localStorage.getItem--logged)",  localStorage.getItem("logged"))
   return (
     <Route
       {...rest}

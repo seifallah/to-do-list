@@ -1,0 +1,21 @@
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-right {
+    position: absolute;
+    right: 1rem;
+}
+
+.nav-right a {
+    color: #fff;
+}

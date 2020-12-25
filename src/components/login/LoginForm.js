@@ -1,5 +1,10 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 const LoginForm = () => {
     const history = useHistory();
@@ -25,29 +30,37 @@ const LoginForm = () => {
   
     return (
       <div className="loginForm--container">
-        <form onSubmit={handleSubmit}>
+         <Card className={"classes.root"}>
+      <CardContent>
             <div class="form-group">
-                <label>Email</label>
-                <input
-                autoFocus
-                type="email"
-                value={email}
+              <TextField 
+                label="Email" 
+                variant="outlined" 
+                fullWidth
+                type="email" value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                />
+              />
           </div>
           <div class="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              <TextField 
+                  label="Password" 
+                  variant="outlined" 
+                  fullWidth
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+              />
           </div>
           {error&&<div className="loginForm-error">{error}</div>}
-          <button type="submit" disabled={!validateForm()}>
-            Login
-          </button>
-        </form>
+      </CardContent>
+      <CardActions>
+      <Button onClick={handleSubmit}
+                disabled={!validateForm()} 
+                variant="contained" 
+                color="primary">Login
+      </Button>
+      </CardActions>
+    </Card>
       </div>
     );
 }

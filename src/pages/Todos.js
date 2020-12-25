@@ -3,6 +3,11 @@ import TodoForm from "../components/todo/TodoForm";
 import TodoList from "../components/todo/TodoList";
 import { v4 as uuidv4 } from 'uuid';
 import {  useHistory} from "react-router-dom";
+import Button from '@material-ui/core/Button';
+
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const TodoPage = () => {
     const storedTodos = JSON.parse(localStorage.getItem("todos"));
@@ -48,11 +53,24 @@ const TodoPage = () => {
     }
 
     return ( <div>
-            <h1>TodoPage</h1>
-            {connected!==null&& <button onClick={logOut}>Deconnexion</button> }
+            <div className="title"><span>TodoPage</span>{connected!==null&&<Button onClick={logOut} variant="contained">Deconnexion</Button> }</div>
+            <Box component="div" m={1}>
+                <Card>
+                    <CardContent>
+                        <h3>Todo form</h3>
+                        <TodoForm handleSubmit={handleTodo} todo={todo} />
+                    </CardContent>
+                </Card>
+            </Box>
+            <Box component="div" m={1}>
+                <Card>
+                    <CardContent>
+                        <h3>Todo List</h3>
+                        <TodoList data={todos} handleDelete={deleteTodo} handleEdit={(todo) => setTodo(todo)}/>
+                    </CardContent>
+                </Card>
+            </Box>
 
-            <TodoForm handleSubmit={handleTodo} todo={todo} />
-            <TodoList data={todos} handleDelete={deleteTodo} handleEdit={(todo) => setTodo(todo)}/>
     </div> );
 }
  
