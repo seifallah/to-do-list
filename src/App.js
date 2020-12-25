@@ -1,21 +1,27 @@
 import './App.css';
+import NavBar from './components/nav/Nav';
+import {  Switch,  Route} from "react-router-dom";
+import routes from './routes/baseRoutes';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <NavBar/>
       </header>
+      <section>
+        <Switch>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              children={<route.component />}
+            />
+          ))}
+        </Switch>
+      </section>
+
     </div>
   );
 }
